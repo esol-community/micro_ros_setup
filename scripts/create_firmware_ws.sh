@@ -86,7 +86,7 @@ pushd $FW_TARGETDIR >/dev/null
     # Creating dev directory
     mkdir $DEV_WS_DIR
 
-    if [ $RTOS != "host" ]; then
+    if [[ "$RTOS" != "host"* ]]; then
         ros2 run micro_ros_setup create_ws.sh $DEV_WS_DIR $PREFIX/config/$RTOS/dev_ros2_packages.txt \
             $PREFIX/config/$RTOS/dev_uros_packages.repos
         rosdep install --os=ubuntu:jammy -y --from-paths $DEV_WS_DIR -i $DEV_WS_DIR --rosdistro $ROS_DISTRO --skip-keys="$SKIP"
@@ -100,7 +100,7 @@ popd >/dev/null
 
 # build the dev_ws
 . $(dirname $0)/clean_env.sh
-if [ $RTOS != "host" ]; then
+if [[ "$RTOS" != "host"* ]]; then
     pushd $FW_TARGETDIR/$DEV_WS_DIR >/dev/null
         colcon build
         set +o nounset
@@ -114,4 +114,3 @@ rosdep install --os=ubuntu:jammy -y --from-paths $PREFIX/config/$RTOS/$TARGET_FO
 
 # Creating specific firmware folder
 . $PREFIX/config/$RTOS/$TARGET_FOLDER/create.sh
-

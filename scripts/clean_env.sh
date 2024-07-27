@@ -14,14 +14,14 @@ function clean {
       grep -v -E "($(echo $PREFIXES_TO_CLEAN | sed 's/:/\|/g'))" ) | sed 's/ /:/g' )
 }
 
-if [ $RTOS == "host" ]; then
+if [[ "$RTOS" == "host"* ]]; then
   echo "Compiling for host environment: not cleaning path"
 else
   echo "Crosscompiled environment: cleaning path"
   if [ ! -z ${LD_LIBRARY_PATH+x} ]
   then
     MRS_TEMP_VAR=$(clean $LD_LIBRARY_PATH)
-    if [ ! -z "$MRS_TEMP_VAR" ]  
+    if [ ! -z "$MRS_TEMP_VAR" ]
     then
       export LD_LIBRARY_PATH=$MRS_TEMP_VAR
     else
@@ -32,7 +32,7 @@ else
   if [ ! -z ${CMAKE_PREFIX_PATH+x} ]
   then
     MRS_TEMP_VAR=$(clean $CMAKE_PREFIX_PATH)
-    if [ ! -z "$MRS_TEMP_VAR" ]  
+    if [ ! -z "$MRS_TEMP_VAR" ]
     then
       export CMAKE_PREFIX_PATH=$MRS_TEMP_VAR
     else
@@ -43,7 +43,7 @@ else
   if [ ! -z ${PYTHONPATH+x} ]
   then
     MRS_TEMP_VAR=$(clean $PYTHONPATH)
-    if [ ! -z "$MRS_TEMP_VAR" ]  
+    if [ ! -z "$MRS_TEMP_VAR" ]
     then
       export PYTHONPATH=$MRS_TEMP_VAR
     else

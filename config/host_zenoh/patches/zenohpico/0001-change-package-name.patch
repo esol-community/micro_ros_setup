@@ -1,0 +1,26 @@
+From 99e2640551016965626c438df07f0356ec637b61 Mon Sep 17 00:00:00 2001
+From: Katsumi Yamazaki <v-yamazaki8668@esol.co.jp>
+Date: Thu, 29 Aug 2024 13:52:23 +0900
+Subject: [PATCH] change package name.
+
+---
+ colcon.pkg | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/colcon.pkg b/colcon.pkg
+index 51ae41f2..0841abcc 100644
+--- a/colcon.pkg
++++ b/colcon.pkg
+@@ -1,8 +1,4 @@
+ {
+-    "name": "zenoh_pico",
++    "name": "zenohpico",
+     "type": "cmake",
+-    "cmake-args":[
+-        "-DTESTS=OFF",
+-        "-DEXAMPLES=OFF",
+-    ],
+ }
+-- 
+2.43.0
+
