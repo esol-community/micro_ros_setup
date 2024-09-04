@@ -1,6 +1,8 @@
 # populate the workspace
 mkdir -p src
 
+echo ros2 run micro_ros_setup create_ws.sh src $PREFIX/config/$RTOS/client_ros2_packages.txt $PREFIX/config/$RTOS/$PLATFORM/client_host_packages.repos
+
 ros2 run micro_ros_setup create_ws.sh src $PREFIX/config/$RTOS/client_ros2_packages.txt $PREFIX/config/$RTOS/$PLATFORM/client_host_packages.repos
 
 # add appropriate colcon.meta
@@ -17,7 +19,7 @@ if [ ! -v RMW_ZENOH_PICO_PATH ] ; then
 fi
 
 if [ ! -d src/uros/rmw_zenoh_pico ] ; then
-    git clone $RMW_ZENOH_PICO_PATH -b master src/uros/rmw_zenoh_pico
+    git clone $RMW_ZENOH_PICO_PATH -b develop src/uros/rmw_zenoh_pico
 fi
 
 # local patches (2024.08.29)
