@@ -1,0 +1,26 @@
+From 203155907623d8d717539c4f902a48e3decb2d58 Mon Sep 17 00:00:00 2001
+From: Katsumi Yamazaki <v-yamazaki8668@esol.co.jp>
+Date: Wed, 11 Sep 2024 14:07:31 +0900
+Subject: [PATCH] disable CMAKE_DL_LIBS entry for build rmw_zeonh_pico. (delete
+ part of warning)
+
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 0b7c188..b62192a 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -599,7 +599,7 @@ endif()
+ 
+ # Export old-style CMake variables
+ ament_export_include_directories("include/${PROJECT_NAME}")
+-ament_export_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS})
++# ament_export_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS})
+ 
+ # Export modern CMake targets
+ ament_export_targets(${PROJECT_NAME})
+-- 
+2.43.0
+

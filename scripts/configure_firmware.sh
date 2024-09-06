@@ -79,6 +79,8 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+export RTOS
+export PLATFORM
 # Configure specific firmware folder if needed
 if [ -d "$PREFIX/config/$RTOS/generic" ]; then
     echo "Configuring firmware for $RTOS platform $PLATFORM"
@@ -87,4 +89,3 @@ else
     echo "Configuring firmware for $RTOS platform $PLATFORM"
     exec $PREFIX/config/$RTOS/$PLATFORM/configure.sh $@
 fi
-

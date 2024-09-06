@@ -1,0 +1,42 @@
+From c2dd395b8487f810be84ef4334b06573c0e49079 Mon Sep 17 00:00:00 2001
+From: Katsumi Yamazaki <v-yamazaki8668@esol.co.jp>
+Date: Tue, 10 Sep 2024 14:52:13 +0900
+Subject: [PATCH 2/2] append cmake value for rmw_zenoh_pico with colcon.
+
+---
+ CMakeLists.txt         | 2 +-
+ PackageConfig.cmake.in | 8 ++++++++
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 37c51f9d..d2269c6e 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -117,7 +117,7 @@ else()
+ endif()
+ 
+ # Compiler definition
+-message("Compilers in use: ${CMAKE_C_COMPILER_ID}, ${CMAKE_CXX_COMPILER_ID}")
++message(STATUS "Compilers in use: ${CMAKE_C_COMPILER_ID}, ${CMAKE_CXX_COMPILER_ID}")
+ if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_C_COMPILER_ID STREQUAL "Clang")
+   add_definition(ZENOH_COMPILER_CLANG)
+ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_C_COMPILER_ID STREQUAL "GNU")
+diff --git a/PackageConfig.cmake.in b/PackageConfig.cmake.in
+index 800ceff6..a8395a21 100644
+--- a/PackageConfig.cmake.in
++++ b/PackageConfig.cmake.in
+@@ -47,3 +47,11 @@ elseif(CMAKE_SYSTEM_NAME MATCHES "Generic")
+   endif()
+ endif()
+ 
++# for rmw_zenoh_pico with colcon
++set(zenohpico_INCLUDE_DIRS "@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_INCLUDEDIR@")
++
++if(BUILD_SHARED_LIBS)
++  set(zenohpico_LIBRARIES "@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_LIBDIR@/@STATICLIB@libzenohpico.so")
++else()
++  set(zenohpico_LIBRARIES "@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_LIBDIR@/@STATICLIB@libzenohpico.a")
++endif()
+-- 
+2.43.0
+

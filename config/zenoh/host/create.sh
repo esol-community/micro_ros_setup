@@ -23,8 +23,12 @@ if [ ! -d src/uros/rmw_zenoh_pico ] ; then
 fi
 
 # local patches (2024.08.29)
-git apply --directory=src/uros/zenohpico \
-    $PREFIX/config/$RTOS/patches/zenohpico/*
+if [ -d src/uros/zenohpico ] ; then
+    git apply --directory=src/uros/zenohpico \
+	$PREFIX/config/$RTOS/patches/zenohpico/*
+fi
 
-git apply --directory=src/uros/rosidl_typesupport_microxrcedds \
-    $PREFIX/config/$RTOS/patches/rosidl_typesupport_microxrcedds/*
+if [ -d src/uros/rosidl_typesupport_microxrcedds ] ; then
+    git apply --directory=src/uros/rosidl_typesupport_microxrcedds \
+	$PREFIX/config/$RTOS/patches/rosidl_typesupport_microxrcedds/*
+fi
