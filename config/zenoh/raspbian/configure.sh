@@ -35,7 +35,7 @@ pushd $FW_TARGETDIR >/dev/null
     fi
 
     if [ ! -d mcu_ws/uros/rmw_zenoh_pico ] ; then
-        git clone $RMW_ZENOH_PICO_PATH -b develop mcu_ws/uros/rmw_zenoh_pico
+        git clone $RMW_ZENOH_PICO_PATH -b rmw_zenoh_pico mcu_ws/uros/rmw_zenoh_pico
     fi
 
     # local patches (2024.08.29)
