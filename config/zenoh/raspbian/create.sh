@@ -10,7 +10,14 @@ pushd $FW_TARGETDIR/$DEV_WS_DIR >/dev/null
     # curl -o ~/xcompiler.tar.gz -L $TOOLCHAIN_URL
     mkdir xcompiler
     tar xf ~/xcompiler.tar.gz -C xcompiler --strip-components 1
-    # rm xcompiler.tar.gz
+    if [ ! -d xcompiler ]; then
+        if [ ! -e xcompiler.tar.gz ]; then
+            curl -o xcompiler.tar.gz -L $TOOLCHAIN_URL
+        fi
+        mkdir xcompiler
+        tar xf xcompiler.tar.gz -C xcompiler --strip-components 1
+        touch xcompiler/COLCON_IGNORE
+    fi
 popd >/dev/null
 
 pushd $FW_TARGETDIR >/dev/null
