@@ -3,7 +3,7 @@
 <package format="2">
   <name>firmware</name>
   <version>0.0.0</version>
-  <description>Micro-ROS dependecies for host platforms for rmw_zenoh_pico</description>
+  <description>Micro-ROS dependecies for host platforms using rmw_zenoh and zenoh-pico</description>
   <maintainer email="v-yamazaki8668@esol.co.jp">Katsumi Yamazaki</maintainer>
   <license>APL2</license>
 
