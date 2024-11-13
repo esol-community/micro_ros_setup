@@ -19,7 +19,7 @@ if [ ! -v RMW_ZENOH_PICO_PATH ] ; then
 fi
 
 if [ ! -d src/uros/rmw_zenoh_pico ] ; then
-    git clone $RMW_ZENOH_PICO_PATH -b rmw_zenoh_pico src/uros/rmw_zenoh_pico
+    git clone $RMW_ZENOH_PICO_PATH -b main src/uros/rmw_zenoh_pico
 fi
 
 # local patches (2024.08.29)
