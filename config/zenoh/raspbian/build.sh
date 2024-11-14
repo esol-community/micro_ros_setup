@@ -11,7 +11,7 @@ pushd $FW_TARGETDIR/mcu_ws >/dev/null
             -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
             -DBUILD_SHARED_LIBS=OFF \
             -DBUILD_TESTING=OFF \
-	    -DBUILD_DEMO=OFF \
+	        -DBUILD_DEMO=OFF \
             "--no-warn-unused-cli"
     find ./install -executable -type f -name $APP_BINARY_NAME -exec cp {} $FW_TARGETDIR/bin/$APP_OUTPUT_NAME \;
 popd >/dev/null
