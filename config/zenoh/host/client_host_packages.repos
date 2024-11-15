@@ -52,12 +52,12 @@ repositories:
 
 # rmw_zenoh_pico
 
-  uros/rosidl_typesupport_microxrcedds:
-    type: git
-    url: https://github.com/micro-ROS/rosidl_typesupport_microxrcedds.git
-    version: jazzy
-
   uros/zenohpico:
     type: git
     url: https://github.com/eclipse-zenoh/zenoh-pico.git
     version: 0.11.0
+
+  uros/rmw_zenoh_pico:
+    type: git
+    url: https://github.com/esol-community/rmw_zenoh_pico.git
+    version: main

@@ -13,6 +13,8 @@ function help {
 pushd $FW_TARGETDIR >/dev/null
     rm -rf mcu_ws/*
     cp raspbian_apps/toolchain.cmake mcu_ws/
+    cp -r rmw_zenoh_pico mcu_ws/uros/
+    cp -r rmw_zenoh_pico/rmw_zenoh_pico/demo/uros/* raspbian_apps/
     curl -s https://raw.githubusercontent.com/ros2/ros2/jazzy/ros2.repos |\
         ros2 run micro_ros_setup yaml_filter.py raspbian_apps/$CONFIG_NAME/ros2_repos.filter > ros2.repos
     vcs import --input ros2.repos mcu_ws/ && rm ros2.repos
@@ -29,29 +31,20 @@ pushd $FW_TARGETDIR >/dev/null
     cp raspbian_apps/$CONFIG_NAME/colcon.meta mcu_ws/
     cp raspbian_apps/$CONFIG_NAME/app_info.sh mcu_ws/
 
-    # get rmw_zenoh_pico repository from local strage
-    if [ ! -v RMW_ZENOH_PICO_PATH ] ; then
-        export RMW_ZENOH_PICO_PATH="../../rmw_zenoh_pico"
-    fi
-
-    if [ ! -d mcu_ws/uros/rmw_zenoh_pico ] ; then
-        git clone $RMW_ZENOH_PICO_PATH -b rmw_zenoh_pico mcu_ws/uros/rmw_zenoh_pico
-    fi
-
     # local patches (2024.08.29)
     if [ -d mcu_ws/uros/zenohpico ] ; then
-	git apply --directory=mcu_ws/uros/zenohpico \
-	    $PREFIX/config/$RTOS/patches/zenohpico/*
+        git apply --directory=mcu_ws/uros/zenohpico \
+            $PREFIX/config/$RTOS/patches/zenohpico/*
     fi
 
     if [ -d mcu_ws/uros/rosidl_typesupport_microxrcedds ] ; then
-	git apply --directory=mcu_ws/uros/rosidl_typesupport_microxrcedds \
-	    $PREFIX/config/$RTOS/patches/rosidl_typesupport_microxrcedds/*
+        git apply --directory=mcu_ws/uros/rosidl_typesupport_microxrcedds \
+            $PREFIX/config/$RTOS/patches/rosidl_typesupport_microxrcedds/*
     fi
 
     if [ -d mcu_ws/uros/rcutils ] ; then
-	git apply --directory=mcu_ws/uros/rcutils \
-	    $PREFIX/config/$RTOS/patches/rcutils/*
+        git apply --directory=mcu_ws/uros/rcutils \
+            $PREFIX/config/$RTOS/patches/rcutils/*
     fi
 
     # import application program
@@ -67,15 +60,14 @@ popd >/dev/null
 
 # update configure for cmake parameter
 if [ "$UROS_TRANSPORT" == "unicast" ]; then
-
     update_meta "rmw_zenoh_pico" "RMW_ZENOH_PICO_TRANSPORT="$UROS_TRANSPORT
 
     if [ -n $UROS_AGENT_IP ]; then
-	update_meta "rmw_zenoh_pico" "RMW_ZENOH_PICO_CONNECT="$UROS_AGENT_IP
+    update_meta "rmw_zenoh_pico" "RMW_ZENOH_PICO_CONNECT="$UROS_AGENT_IP
     fi
 
     if [ -n $UROS_AGENT_PORT ]; then
-	update_meta "rmw_zenoh_pico" "RMW_ZENOH_PICO_CONNECT_PORT="$UROS_AGENT_PORT
+    update_meta "rmw_zenoh_pico" "RMW_ZENOH_PICO_CONNECT_PORT="$UROS_AGENT_PORT
     fi
 
     echo "Configured $UROS_TRANSPORT mode for zenoh-pico"
