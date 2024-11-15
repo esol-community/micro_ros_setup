@@ -13,7 +13,7 @@ function help {
 pushd $FW_TARGETDIR >/dev/null
     rm -rf mcu_ws/*
     cp raspbian_apps/toolchain.cmake mcu_ws/
-    cp -r rmw_zenoh_pico/rmw_zenoh_pico mcu_ws/uros/
+    cp -r rmw_zenoh_pico mcu_ws/uros/
     cp -r rmw_zenoh_pico/rmw_zenoh_pico/demo/uros/* raspbian_apps/
     curl -s https://raw.githubusercontent.com/ros2/ros2/jazzy/ros2.repos |\
         ros2 run micro_ros_setup yaml_filter.py raspbian_apps/$CONFIG_NAME/ros2_repos.filter > ros2.repos
