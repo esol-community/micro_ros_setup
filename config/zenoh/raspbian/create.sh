@@ -22,5 +22,5 @@ popd >/dev/null
 
 pushd $FW_TARGETDIR >/dev/null
     git clone -b jazzy https://github.com/micro-ROS/raspbian_apps.git
-    git clone -b main https://github.com/esol-community/rmw_zenoh_pico.git
+    git clone -b main  https://github.com/esol-community/rmw_zenoh_pico.git
 popd >/dev/null
