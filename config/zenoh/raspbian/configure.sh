@@ -63,11 +63,11 @@ if [ "$UROS_TRANSPORT" == "unicast" ]; then
     update_meta "rmw_zenoh_pico" "RMW_ZENOH_PICO_TRANSPORT="$UROS_TRANSPORT
 
     if [ -n $UROS_AGENT_IP ]; then
-	update_meta "rmw_zenoh_pico" "RMW_ZENOH_PICO_CONNECT="$UROS_AGENT_IP
+    update_meta "rmw_zenoh_pico" "RMW_ZENOH_PICO_CONNECT="$UROS_AGENT_IP
     fi
 
     if [ -n $UROS_AGENT_PORT ]; then
-	update_meta "rmw_zenoh_pico" "RMW_ZENOH_PICO_CONNECT_PORT="$UROS_AGENT_PORT
+    update_meta "rmw_zenoh_pico" "RMW_ZENOH_PICO_CONNECT_PORT="$UROS_AGENT_PORT
     fi
 
     echo "Configured $UROS_TRANSPORT mode for zenoh-pico"
