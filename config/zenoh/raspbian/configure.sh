@@ -22,9 +22,9 @@ pushd $FW_TARGETDIR >/dev/null
 
     # get rmw_zenoh_pico repository from local strage
     if [ ! -v RMW_ZENOH_PICO_PATH ] ; then
-        git clone -b main https://github.com/esol-community/rmw_zenoh_pico.git mcu_ws/uros/rmw_zenoh_pico
+        git clone https://github.com/esol-community/rmw_zenoh_pico -b main mcu_ws/uros/rmw_zenoh_pico
     else
-        git clone $RMW_ZENOH_PICO_PATH mcu_ws/uros/rmw_zenoh_pico
+        cp -a $RMW_ZENOH_PICO_PATH mcu_ws/uros/rmw_zenoh_pico
     fi
 
     cp -a mcu_ws/uros/rmw_zenoh_pico/examples/microros/uros/* raspbian_apps/
