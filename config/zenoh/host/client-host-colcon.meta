@@ -27,15 +27,15 @@
         },
         "rmw_zenoh_pico":{
             "cmake-args":[
-                "-DRMW_ZENOH_PICO_TRANSPORT=unicast",
-                "-DRMW_ZENOH_PICO_TRANSPORT_MODE=client",
-                "-DRMW_ZENOH_PICO_CONNECT=127.0.0.1",
-                "-DRMW_ZENOH_PICO_CONNECT_PORT=7447",
                 "-DBUILD_DEMO=ON"
             ]
         },
         "zenohpico":{
             "cmake-args":[
+                "-DBUILD_TESTING=OFF",
+                "-DBUILD_EXAMPLES=OFF",
+                "-DBATCH_UNICAST_SIZE=1024",
+                "-DFRAG_MAX_SIZE=2048"
             ]
         },
     }
